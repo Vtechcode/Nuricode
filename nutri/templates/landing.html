@@ -51,7 +51,7 @@
                 </div>
 
             </div>
-        </div>
+        
         <form action="{% url 'new_search' %}" method="post">
             {% csrf_token %}
             <input type="text" name="search" placeholder="search">
@@ -63,5 +63,6 @@
         {% block content %}
 
         {% endblock %}
+    </div>
     </body>
 </html>
