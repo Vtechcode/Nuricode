@@ -58,14 +58,20 @@ def disease_search(request):
     print(disease_symptoms)
     diet_list = disease_diet.split(',')
     
+    food_type = dict()
+
     for food in diet_list:
-        print(price_search(food))
+        food_type[food] = price_search(food)
+
+    print(food_type)
+    
             
 
     frontend_display = {
         'search': disease_name,
         'disease_symptoms': disease_symptoms,
         'disease_diet': disease_diet,
+        'food_type': food_type,
     }
     return render(request, 'health/new_search.html', frontend_display)
     

@@ -16,7 +16,34 @@
       <td>{{ search }}</td>
       <td>{{ disease_symptoms }}</td>
       <td>{{ disease_diet }}</td>
+      
     </tr>
+  </tbody>
+</table>
+
+<table class="responsive-table">
+  <thead>
+    <tr>
+        
+        <th>Food Item</th>
+        <th>Food Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      {% for food, price in food_type.items %}
+      <tr>
+      
+      
+      <td>{{ food }}</td>
+
+      
+      <td>{{ price }}</td>
+    </tr>
+      {% endfor %}
+      
+    
   </tbody>
 </table>
 
