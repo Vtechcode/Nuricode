@@ -5,30 +5,48 @@ from bs4 import BeautifulSoup
 from django.shortcuts import render
 
 BASE_JUMIA_URL = 'https://www.jumia.co.ke/catalog/?q={}'
+BASE_NAIVAS_URL = 'https://www.naivas.co.ke/search?q={}'
 
 # Create your views here.
 def home(request):
     return render(request, 'landing.html')
 
 
-def price_search(item):
-    #search = request.POST.get('search')
+# def price_search(item):
+#     #search = request.POST.get('search')
+#     print(quote_plus(item))
+#     print(certifi.where())
+#     final_url = BASE_JUMIA_URL.format(quote_plus(item))
+#     print(final_url)
+#     html_object = requests.get(final_url, verify=certifi.where())
+#     webpage = html_object.text
+#     soup = BeautifulSoup(webpage, features='html.parser')
+#     #print(soup.prettify())
+#     price = soup.find_all('div', {'class': 'prc'})
+
+#     try:
+#         money = price[0].text
+#     except IndexError:
+#         money = "Nothing"
+#     #disease_search()
+    
+#     return money
+
+def price_search_naivas(item):
     print(quote_plus(item))
     print(certifi.where())
-    final_url = BASE_JUMIA_URL.format(quote_plus(item))
+    final_url = BASE_NAIVAS_URL.format(quote_plus(item))
     print(final_url)
-    html_object = requests.get(final_url, verify=certifi.where())
+    html_object = requests.get(final_url, verify = False)
     webpage = html_object.text
-    soup = BeautifulSoup(webpage, features='html.parser')
-    #print(soup.prettify())
-    price = soup.find_all('div', {'class': 'prc'})
+    soup = BeautifulSoup(webpage, features = 'html.parser')
+    price = soup.find_all('span', {'class': 'product-price txt-md'})
 
     try:
         money = price[0].text
     except IndexError:
         money = "Nothing"
-    #disease_search()
-    
+
     return money
 
 def disease_search(request):
@@ -61,7 +79,7 @@ def disease_search(request):
     food_type = dict()
 
     for food in diet_list:
-        food_type[food] = price_search(food)
+        food_type[food] = price_search_naivas(food)
 
     print(food_type)
     
