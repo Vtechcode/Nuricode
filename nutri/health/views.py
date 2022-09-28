@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from django.shortcuts import render
 
 BASE_JUMIA_URL = 'https://www.jumia.co.ke/catalog/?q={}'
-BASE_NAIVAS_URL = 'https://www.naivas.co.ke/search?q={}'
+BASE_NAIVAS_URL = 'https://zucchini.co.ke/products/{}'
 
 # Create your views here.
 def home(request):
@@ -37,15 +37,18 @@ def price_search_naivas(item):
     print(certifi.where())
     final_url = BASE_NAIVAS_URL.format(quote_plus(item))
     print(final_url)
-    html_object = requests.get(final_url, verify = False)
+    html_object = requests.get(final_url, verify = certifi.where())
     webpage = html_object.text
     soup = BeautifulSoup(webpage, features = 'html.parser')
-    price = soup.find_all('span', {'class': 'product-price txt-md'})
+    price = soup.find_all('span', {'class': 'money'})
+    print(price)
 
     try:
         money = price[0].text
     except IndexError:
         money = "Nothing"
+    
+    print(money)
 
     return money
 
