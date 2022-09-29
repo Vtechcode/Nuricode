@@ -5,32 +5,32 @@ from bs4 import BeautifulSoup
 from django.shortcuts import render
 
 BASE_JUMIA_URL = 'https://www.jumia.co.ke/catalog/?q={}'
-BASE_NAIVAS_URL = 'https://zucchini.co.ke/products/{}'
+BASE_NAIVAS_URL = 'https://e-mart.co.ke/index.php?category_id=0&search={}&submit_search=&route=product%2Fsearch'
 
 # Create your views here.
 def home(request):
     return render(request, 'landing.html')
 
 
-# def price_search(item):
-#     #search = request.POST.get('search')
-#     print(quote_plus(item))
-#     print(certifi.where())
-#     final_url = BASE_JUMIA_URL.format(quote_plus(item))
-#     print(final_url)
-#     html_object = requests.get(final_url, verify=certifi.where())
-#     webpage = html_object.text
-#     soup = BeautifulSoup(webpage, features='html.parser')
-#     #print(soup.prettify())
-#     price = soup.find_all('div', {'class': 'prc'})
+def price_search(item):
+    #search = request.POST.get('search')
+    print(quote_plus(item))
+    print(certifi.where())
+    final_url = BASE_JUMIA_URL.format(quote_plus(item))
+    print(final_url)
+    html_object = requests.get(final_url, verify=certifi.where())
+    webpage = html_object.text
+    soup = BeautifulSoup(webpage, features='html.parser')
+    #print(soup.prettify())
+    price = soup.find_all('div', {'class': 'prc'})
 
-#     try:
-#         money = price[0].text
-#     except IndexError:
-#         money = "Nothing"
-#     #disease_search()
+    try:
+        money = price[0].text
+    except IndexError:
+        money = "Price not found"
+    #disease_search()
     
-#     return money
+    return money, final_url
 
 def price_search_naivas(item):
     print(quote_plus(item))
@@ -40,17 +40,18 @@ def price_search_naivas(item):
     html_object = requests.get(final_url, verify = certifi.where())
     webpage = html_object.text
     soup = BeautifulSoup(webpage, features = 'html.parser')
-    price = soup.find_all('span', {'class': 'money'})
+    price = soup.find_all('span', {'class': 'price-new'})
     print(price)
 
     try:
         money = price[0].text
     except IndexError:
-        money = "Nothing"
+        money = "Price not found"
+    
     
     print(money)
 
-    return money
+    return money, final_url
 
 def disease_search(request):
     SITE_URL = 'https://www.britannica.com/science/nutritional-disease'
@@ -82,7 +83,8 @@ def disease_search(request):
     food_type = dict()
 
     for food in diet_list:
-        food_type[food] = price_search_naivas(food)
+        food_type[food] = [price_search_naivas(food), price_search(food)]
+        print(type(food_type[food]))
 
     print(food_type)
     

@@ -26,7 +26,10 @@
     <tr>
         
         <th>Food Item</th>
-        <th>Food Price</th>
+        <th>Easmatt supermarket Price</th>
+        <th>Easmatt supermarket Price URL</th>
+        <th>Jumia Price</th>
+        <th>Jumia Price URL</th>
     </tr>
   </thead>
 
@@ -39,9 +42,22 @@
       <td>{{ food }}</td>
 
       
-      <td>{{ price }}</td>
+      
+      <td>{{ price.0.0 }}</td>
+
+      <td><a href="{{ price.0.1 }}" target="_blank">Link</a></td>
+      
+
+      
+
+      <td>{{ price.1.0 }}</td>
+
+      <td><a href="{{ price.1.1 }}" target="_blank">Link</a></td>
+      
+      
     </tr>
       {% endfor %}
+      
       
     
   </tbody>
