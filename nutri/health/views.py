@@ -9,8 +9,10 @@ BASE_NAIVAS_URL = 'https://e-mart.co.ke/index.php?category_id=0&search={}&submit
 
 # Create your views here.
 def home(request):
-    return render(request, 'landing.html')
+    return render(request, 'index.html')
 
+def about(request):
+    return render(request, 'health/about.html')
 
 def price_search(item):
     #search = request.POST.get('search')
@@ -93,10 +95,10 @@ def disease_search(request):
     frontend_display = {
         'search': disease_name,
         'disease_symptoms': disease_symptoms,
-        'disease_diet': disease_diet,
+        'disease_diet': diet_list,
         'food_type': food_type,
     }
-    return render(request, 'health/new_search.html', frontend_display)
+    return render(request, 'health/details.html', frontend_display)
     
 
 

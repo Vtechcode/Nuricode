@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NutriCode</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,9 +33,9 @@
             <img src="icons/close.svg" alt="close" class="close-icon" id="closeIcon" onclick="hideMenu()">
             
             <ul>
-                <li><a href="index.html"> HOME </a></li>
-                <li><a href="about.html"> ABOUT </a></li>
-                <li><a href="details.html"> CONTACTS </a></li>
+                <li><a href="#"> HOME </a></li>
+                <li><a href="{% url 'about' %}"> ABOUT </a></li>
+                <li><a href="{% url 'about' %}"> CONTACTS </a></li>
             </ul>
 
         </div>
@@ -53,21 +55,27 @@
         <!-- <button type="submit">Search</button> -->
 
         <div class="input-icons">
+            <form action="{% url 'new_search' %}" method="post">
+                {% csrf_token %}
             <input class="search-item"   
                 type="text"
                 name="search"
                 placeholder="Search Disease..."
                 class="search-input" placeholder=" search for any disease" >
-
-                <a href="#" class="search-btn">
-                    <i class="fa fa-search fa-2x" id="search-icon"></i>
-                </a>
+                <button type="submit" name="action">
+                <i class="fa fa-search fa-2x" id="search-icon">
+                
+                    
+                
+            </i>
+        </button>
+            </form>
         </div>
 
 
 
         <!-- ---cards---- -->
-
+        {% block content %}
         <div class="container-row">
 
             <div class="first-row">
@@ -77,40 +85,22 @@
                 </div>
     
                 <div class="disease-col" onclick="onItemClick()">
-                    <h3>Marasmus</h3>
-                    <p>Marasmus is a severe form of malnutrition — specifically, protein-energy undernutrition.</p>
-    
-                </div>
-    
-                <div class="disease-col" onclick="onItemClick()">
-                    <h3>Cancer</h3>
-                    <p> Cancer is a disease in which some of the body's cells grow uncontrollably and spread to other parts of the body.</p>
-    
-                </div>
-            </div>
-
-
-            <div class="second-row" >
-
-                <div class="disease-col" onclick="onItemClick()">
-                    <h3>Diabetes</h3>
-                    <p>Diabetes is a chronic (long-lasting) health condition that affects how your body turns food into energy. </p>
-    
-                </div>
-    
-                <div class="disease-col" onclick="onItemClick()">
                     <h3>Scurvy</h3>
                     <p>a disease caused by a deficiency of vitamin C, characterized by swollen bleeding gums and the opening of previously healed wounds, which particularly affected poorly nourished sailors until the end of the 18th century.</p>
     
                 </div>
     
                 <div class="disease-col" onclick="onItemClick()">
-                    <h3>Kwashiorkor</h3>
-                    <p>a form of malnutrition caused by protein deficiency in the diet, typically affecting young children in the tropics.</p>
+                    <h3>Pellagra</h3>
+                    <p>Pellagra is a systemic disease caused by a severe deficiency of niacin (vitamin B3). It affects the whole body and can eventually lead to death.</p>
     
                 </div>
-
             </div>
+
+
+            
+
+            
             
 
             
@@ -140,7 +130,7 @@
         </div>
         <p>Made with <i class="fa fa-heart-o"></i> by NutriCode team</p>
     </section>
-
+    {% endblock %}
 
 
     <script src="index.js"></script>
