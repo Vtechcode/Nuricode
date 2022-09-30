@@ -1,73 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriCode</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap" rel="stylesheet">
-
-
-    <link rel="stylesheet" 
-          href=
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    
-</head>
-<body>
-    <!-- -----header section----- -->
-    <section class="header">
-       <nav>
-      
-        <!-- <a href="index.html"> <img src="images/nutricode_logo.jpeg" alt="logo"></a> -->
-            
-        <a href="index.html"><b><img src="images/logo.jpeg" class="image-logo" alt=""></b></a>
-        <div class="nav-links" id="navLinks">
-            <img src="icons/close.svg" alt="close" class="close-icon" id="closeIcon" onclick="hideMenu()">
-            
-            <ul>
-                <li><a href="index.html"> HOME </a></li>
-                <li><a href="about.html"> ABOUT </a></li>
-                <li><a href=""> CONTACTS </a></li>
-            </ul>
-
-        </div>
-        <img src="icons/menu.svg" alt="menu" class="menu-icon" id="menuIcon" onclick="showMenu()">
-        
-       </nav>
-   
-    </section>
-
-
-    
-    <section class="diseases">
-        <h1>NutriCode</h1>
-        <p>Search nutrition menu for any disease</p>
-       
-        
-        <!-- <button type="submit">Search</button> -->
-
-        <div class="input-icons">
-            <input class="search-item"   
-                type="text"
-                name="search"
-                placeholder="Search Disease..."
-                class="search-input" placeholder=" search for any disease" >
-
-                <a href="#" class="search-btn">
-                    <i class="fa fa-search fa-2x" id="search-icon"></i>
-                </a>
-        </div>
-
-
-    </section>
+{% extends 'index.html' %}
 
     <!-- ----------about us content----------- -->
+    {% block content %}
+    {% load static %}
     <section class="about-us">
 
         <div class="row">
@@ -89,7 +24,7 @@
             </div>
 
             <div class="about-col">
-                <img src="images/nutricode_logo.jpeg" alt="">
+                <img src="{% static 'CSS/images/nutricode_logo.jpeg' %}" alt="">
             </div>
         </div>
     </section>
@@ -118,8 +53,6 @@
         <p>Made with <i class="fa fa-heart-o"></i> by NutriCode team</p>
     </section>
 
+    {% endblock %}
 
-
-    <script src="index.js"></script>
-</body>
-</html>
+    

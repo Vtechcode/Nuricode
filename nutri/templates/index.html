@@ -27,19 +27,19 @@
       
         <!-- <a href="index.html"> <img src="images/nutricode_logo.jpeg" alt="logo"></a> -->
             
-        <a href="index.html"><b><img src="images/logo.jpeg" class="image-logo" alt=""></b></a>
+        <a href="#"><b><img src="{% static 'CSS/images/logo.jpeg' %}" class="image-logo" alt=""></b></a>
        
         <div class="nav-links" id="navLinks">
-            <img src="icons/close.svg" alt="close" class="close-icon" id="closeIcon" onclick="hideMenu()">
+            <img src="{% static 'CSS/icons/close.svg' %}" alt="close" class="close-icon" id="closeIcon" onclick="hideMenu()">
             
             <ul>
-                <li><a href="#"> HOME </a></li>
+                <li><a href="{% url 'new_search' %}"> HOME </a></li>
                 <li><a href="{% url 'about' %}"> ABOUT </a></li>
                 <li><a href="{% url 'about' %}"> CONTACTS </a></li>
             </ul>
 
         </div>
-        <img src="icons/menu.svg" alt="menu" class="menu-icon" id="menuIcon" onclick="showMenu()">
+        <img src="{% static 'CSS/icons/menu.svg' %}" alt="menu" class="menu-icon" id="menuIcon" onclick="showMenu()">
         
        </nav>
    
@@ -133,6 +133,6 @@
     {% endblock %}
 
 
-    <script src="index.js"></script>
+    <script src="{% static 'index.js' %}"></script>
 </body>
 </html>
